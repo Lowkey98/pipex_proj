@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/18 09:04:09 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/07/18 10:46:04 by ayafdel          ###   ########.fr       */
+/*   Created: 2021/07/18 09:23:27 by ayafdel           #+#    #+#             */
+/*   Updated: 2021/07/18 11:09:46 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-int main(int argc, char **argv)
+char *read_file(char *filename)
 {
     char *file;
+    int fd;
+    char *buff;
 
-    if (argc == 2)
+    file = malloc(1);
+    file = "\0";
+    fd = open(filename,O_RDONLY);
+    buff = malloc(4);
+    while (read(fd,&buff,3))
     {
-        file = read_file(argv[1]);  
-        //printf("%s",file);     
+        file = ft_strjoin(file,buff);
     }
-    return (0);
+    //free(buff);
+    return (file);
 }

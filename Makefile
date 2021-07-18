@@ -1,6 +1,6 @@
 NAME = pipex
 
-SRC = main.c
+SRC = main.c read_file.c ft_strjoin.c
 
 FLAG = gcc -Wall -Werror -Wextra
 
