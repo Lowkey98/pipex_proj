@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 09:23:27 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/07/18 11:09:46 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/07/19 10:33:20 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ char *read_file(char *filename)
     file = "\0";
     fd = open(filename,O_RDONLY);
     buff = malloc(4);
-    while (read(fd,&buff,3))
+    while (read(fd,buff,1))
     {
         file = ft_strjoin(file,buff);
     }
+    //read(fd,buff,10);
     //free(buff);
     return (file);
 }
