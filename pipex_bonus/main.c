@@ -62,31 +62,30 @@ void child_command(char **argv,int *pipe_fd, int fd_out, char **envp, int tmp_fd
 
 int main(int argc, char **argv,char **envp)
 {
-    int fd[2];
+    t_fd fd;
     int id;
-    int pipe_fd[2];
     int tmp_fd;
     int cmd_index = 2;
     if (argc == 1)
         return (0);
-    fd[0] = open(argv[1],O_RDONLY);
-    fd[1] = open(argv[argc - 1],O_WRONLY | O_CREAT | O_TRUNC | O_RDONLY, 0777 );
-    tmp_fd = fd[0];
+    fd.in = open(argv[1],O_RDONLY);
+    fd.out = open(argv[argc - 1],O_WRONLY | O_CREAT | O_TRUNC | O_RDONLY, 0777 );
+    tmp_fd = fd.in;
     while (cmd_index + 1 < argc)
     {
 
-        if (pipe(pipe_fd) == -1)
+        if (pipe(fd.pipe) == -1)
             return (1);
 
         id = fork();
         if (id == 0)
         {
             //printf("a\n");
-            child_command(argv, pipe_fd, fd[1], envp, tmp_fd, cmd_index,argc );
+            child_command(argv, fd.pipe, fd.out, envp, tmp_fd, cmd_index,argc );
         }
-        tmp_fd = pipe_fd[0];    
+        tmp_fd = fd.pipe[0];    
         //close(pipe_fd[0]);
-        close(pipe_fd[1]);
+        close(fd.pipe[1]);
         cmd_index++;
     }
     return (0);
