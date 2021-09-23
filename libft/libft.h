@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 16:12:23 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/09/10 10:31:02 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/09/23 12:32:50 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void	*ft_memchr(const void *str, int c, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 void    print_strings(char **strings);
 char	*ft_strjoin_char(char const *s1, char const *s2,char c);
+char    *ft_free_first(char *first, char *str);
 #endif

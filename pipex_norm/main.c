@@ -6,17 +6,13 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 09:04:09 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/09/14 11:18:53 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/09/23 12:59:03 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char *free_first(char *first, char *str)
-{
-    free(first);   
-    return str;
-}
+
 char *fetch_env_path(char **envp)
 {
     int i;
@@ -39,15 +35,15 @@ char *fetch_pathname(char *cmd, char**envp)
 
     i = 0;
     path = ft_split(fetch_env_path(envp),':');
-    path[0] = free_first(path[0],ft_strdup(ft_strrchr(path[0], '=') + 1));
+    path[0] = ft_free_first(path[0],ft_strdup(ft_strrchr(path[0], '=') + 1));
     
     while (path[i])
     {
-        pathname = free_first(path[i],ft_strjoin_char(path[i],cmd,'/'));
+        pathname = ft_free_first(path[i],ft_strjoin_char(path[i],cmd,'/'));
         if (access(pathname,F_OK) == 0)
             break;
         i++;
-        free(pathname);
+        //free(pathname);
     }
     return pathname;
 }
@@ -76,6 +72,7 @@ void parent_command(char **argv,int *pipe_fd, int fd_out, char **envp)
 }
 int main(int argc, char **argv,char **envp)
 {
+    
     int fd_in;
     int fd_out;
     int pipe_fd[2];
