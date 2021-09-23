@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 16:12:23 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/09/23 12:32:50 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/09/23 16:14:12 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 int		ft_memcmp(const void *str1, const void *str2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t n);
@@ -52,4 +53,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void    print_strings(char **strings);
 char	*ft_strjoin_char(char const *s1, char const *s2,char c);
 char    *ft_free_first(char *first, char *str);
+void    ft_error_msg(char *str);
+void    ft_error_two_msg(char *str_one, char *str_two);
 #endif

@@ -9,11 +9,7 @@
 //     i = 0;
 //     while (str)
 // }
-void    ft_error_msg(char *str, char *cmd)
-{
-    printf("%s %s\n",str,cmd);
-    exit(EXIT_FAILURE);
-}
+
 
 char *fetch_env_path(char **envp)
 {
@@ -27,7 +23,7 @@ char *fetch_env_path(char **envp)
         i++;
     }
     if (envp[i] == 0)
-        ft_error_msg("Error:","Path not found");
+        ft_error_two_msg("Error:","Path not found");
     return envp[i];
 }
 
@@ -52,9 +48,10 @@ char *fetch_pathname(char *cmd, char**envp)
         free(pathname);
     }
     if (path[i] == 0)
-        ft_error_msg("zsh: command not found:",cmd);
+        ft_error_two_msg("zsh: command not found:",cmd);
     return pathname;
 }
+
 
 void  ft_exit_errno(char *str)
 {
