@@ -1,9 +1,9 @@
 NAME = pipex
 
 
-SRC = pipex_norm/main.c
+SRC = pipex_norm/main.c pipex_norm/fetch_pathname.c pipex_norm/ft_exit_errno.c
 
-SRC_BONUS = pipex_bonus/*.c
+SRC_BONUS = pipex_bonus/fetch_pathname.c pipex_bonus/main.c
 CC = gcc
 FLAG = -Wall -Werror -Wextra
 LIBFT_PATH = libft
