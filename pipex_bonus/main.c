@@ -11,6 +11,7 @@
 // }
 
 
+
 char *fetch_env_path(char **envp)
 {
     int i;
@@ -81,6 +82,7 @@ void child_command(t_arg arg, t_fd fd, int cmd_index)
     if ((execve(path, cmd, arg.env) == -1))
     {
         free(path);
+        ft_free_split(cmd);
         ft_exit_errno(0);
     }
 }
@@ -89,6 +91,18 @@ t_arg   fetch_arg(char **argv, int argc, char **envp)
 {
     t_arg arg;
 
+    int i;
+
+    i = 2;
+ 
+    if (argv[1][0] == '\0' || argv[argc - 1][0] == '\0')
+        ft_error_msg("zsh: no such file or directory: ");
+    while (i< argc - 1)
+    {
+        if (argv[i][0] == '\0')
+            ft_error_msg("zsh: permission denied: ");
+        i++;
+    }
     arg.v = argv;
     arg.c = argc;
     arg.env = envp;

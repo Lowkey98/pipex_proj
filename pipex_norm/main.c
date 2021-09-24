@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 09:04:09 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/09/24 11:48:51 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/09/24 15:01:42 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void parent_command(char **argv,int *pipe_fd, int fd_out, char **envp)
     if ((execve(path, cmd, envp) == -1))
     {
         free(path);
+        ft_free_split(cmd);
         ft_exit_errno(0);
     }}
 
@@ -120,7 +121,6 @@ void check_arg(char **argv, int argc)
             ft_error_msg("zsh: permission denied: ");
         i++;
     }
-    
 }
 
 int main(int argc, char **argv,char **envp)
