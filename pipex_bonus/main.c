@@ -76,10 +76,7 @@ void child_command(t_arg arg, t_fd fd, int cmd_index)
     if (cmd_index + 1 < arg.c - 1)
         dup2(fd.pipe[1],STDOUT_FILENO);
     else
-    {
         dup2(fd.out,STDOUT_FILENO);
-        
-    }
     close(fd.pipe[1]);
     if ((execve(path, cmd, arg.env) == -1))
     {

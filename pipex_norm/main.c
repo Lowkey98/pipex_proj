@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 09:04:09 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/09/23 18:08:48 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/09/24 11:48:51 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@ char *fetch_pathname(char *cmd, char**envp)
     
     while (path[i])
     {
-        pathname = ft_free_first(path[i],ft_strjoin_char(path[i],cmd,'/'));
+        pathname = ft_strjoin_char(path[i],cmd,'/');
         if (access(pathname,F_OK) == 0)
             break;
         i++;
         free(pathname);
+        if (path[i] == 0)
+            ft_error_two_msg("zsh: command not found:",cmd);
     }
-    if (path[i] == 0)
-        ft_error_two_msg("zsh: command not found:",cmd);    
+    ft_free_split(path);
     return pathname;
 }
 
@@ -70,7 +71,10 @@ void child_command(char *argv,int *pipe_fd, int fd_in, char **envp)
     dup2(fd_in,STDIN_FILENO);
     dup2(pipe_fd[1],STDOUT_FILENO);
     if ((execve(path, cmd, envp) == -1))
-        printf("error");    
+    {
+        free(path);
+        ft_exit_errno(0);
+    }
 }
 void parent_command(char **argv,int *pipe_fd, int fd_out, char **envp)
 {
@@ -83,8 +87,10 @@ void parent_command(char **argv,int *pipe_fd, int fd_out, char **envp)
     dup2(pipe_fd[0],STDIN_FILENO);
     dup2(fd_out,STDOUT_FILENO);
     if ((execve(path, cmd, envp) == -1))
-        printf("error\n"); 
-}
+    {
+        free(path);
+        ft_exit_errno(0);
+    }}
 
 t_fd    open_file(char **argv, char argc)
 {
@@ -99,6 +105,24 @@ t_fd    open_file(char **argv, char argc)
     return (fd);  
 }
 
+void check_arg(char **argv, int argc)
+{
+    int i;
+
+    i = 2;
+    if (argc != 5)
+        ft_error_msg("You need 5 arguments");    
+    if (argv[1][0] == '\0' || argv[argc - 1][0] == '\0')
+        ft_error_msg("zsh: no such file or directory: ");
+    while (i< argc - 1)
+    {
+        if (argv[i][0] == '\0')
+            ft_error_msg("zsh: permission denied: ");
+        i++;
+    }
+    
+}
+
 int main(int argc, char **argv,char **envp)
 {
     
@@ -106,8 +130,7 @@ int main(int argc, char **argv,char **envp)
     int pipe_fd[2];
     int id;
 
-    if (argc != 5)
-        ft_error_msg("You need 5 arguments");    
+    check_arg(argv, argc);
     pipe(pipe_fd);
     fd = open_file(argv, argc);
     id = fork();
@@ -116,4 +139,4 @@ int main(int argc, char **argv,char **envp)
     else
         parent_command(argv, pipe_fd, fd.out,envp);
     return (0);
-}       
+}
