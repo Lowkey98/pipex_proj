@@ -23,4 +23,6 @@ typedef struct s_arg
     int c;
     char **env;
 }   t_arg;
+
+char *fetch_pathname(char *cmd, char**envp);
 #endif

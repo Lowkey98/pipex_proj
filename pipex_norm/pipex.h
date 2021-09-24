@@ -22,7 +22,6 @@ typedef struct s_arg
     char **env;
 }   t_arg;
 char    *read_file(char *filename);
-void    exec_command(char *input, char **argv);
-
-
+char *fetch_pathname(char *cmd, char**envp);
+void  ft_exit_errno(char *str);
 #endif

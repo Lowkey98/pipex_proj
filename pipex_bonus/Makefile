@@ -1,7 +1,7 @@
 NAME = pipex_bonus
 
 
-SRC = main.c
+SRC = fetch_pathname.c main.c
 
 CC = gcc
 FLAG = -Wall -Werror -Wextra

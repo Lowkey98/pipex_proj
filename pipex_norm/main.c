@@ -6,59 +6,14 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 09:04:09 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/09/24 15:01:42 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/09/24 15:18:41 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void  ft_exit_errno(char *str)
-{
-    if (!str)
-        printf("Error: %s", strerror(errno));
-    else
-        printf("Error: %s: %s",strerror(errno),str);
-    //printf("a");
-    exit(EXIT_FAILURE);
-}
 
-char *fetch_env_path(char **envp)
-{
-    int i;
 
-    i = 0;
-    while (envp[i])
-    {
-        if (ft_strncmp(envp[i],"PATH=",5) == 0)
-            break;
-        i++;
-    }
-    return envp[i];
-}
-char *fetch_pathname(char *cmd, char**envp)
-{
-    char **path;
-    //char *tmp;
-    char *pathname;
-    int i;
-
-    i = 0;
-    path = ft_split(fetch_env_path(envp),':');
-    path[0] = ft_free_first(path[0],ft_strdup(ft_strrchr(path[0], '=') + 1));
-    
-    while (path[i])
-    {
-        pathname = ft_strjoin_char(path[i],cmd,'/');
-        if (access(pathname,F_OK) == 0)
-            break;
-        i++;
-        free(pathname);
-        if (path[i] == 0)
-            ft_error_two_msg("zsh: command not found:",cmd);
-    }
-    ft_free_split(path);
-    return pathname;
-}
 
 void child_command(char *argv,int *pipe_fd, int fd_in, char **envp)
 {
@@ -91,7 +46,8 @@ void parent_command(char **argv,int *pipe_fd, int fd_out, char **envp)
         free(path);
         ft_free_split(cmd);
         ft_exit_errno(0);
-    }}
+    }
+}
 
 t_fd    open_file(char **argv, char argc)
 {

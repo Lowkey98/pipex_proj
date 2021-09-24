@@ -1,7 +1,7 @@
 NAME = pipex
 
 
-SRC = main.c read_file.c  exec_command.c
+SRC = main.c fetch_pathname.c ft_exit_errno.c
 
 CC = gcc
 FLAG = -Wall -Werror -Wextra
