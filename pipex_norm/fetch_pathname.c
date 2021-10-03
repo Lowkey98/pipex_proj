@@ -22,6 +22,8 @@ char *fetch_pathname(char *cmd, char**envp)
     int i;
 
     i = 0;
+    if (access(cmd,F_OK) == 0)
+        return ft_strdup(cmd);
     path = ft_split(fetch_env_path(envp),':');
     path[0] = ft_free_first(path[0],ft_strdup(ft_strrchr(path[0], '=') + 1));
     

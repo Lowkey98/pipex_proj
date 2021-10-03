@@ -11,13 +11,13 @@ all :$(NAME)
 
 $(NAME): $(SRC)
 			make -C $(LIBFT_PATH)
-			$(CC) $(FLAG) $(SRC) -g $(LIBFT_PATH)/libft.a -o $(NAME)
+			$(CC) $(FLAG) $(SRC)  $(LIBFT_PATH)/libft.a -o $(NAME)
 clean:
 			rm -f $(NAME)
 fclean: clean
 				make fclean -C $(LIBFT_PATH)
 
 bonus: fclean
-		$(CC) $(FLAG) $(SRC_BONUS) -g $(LIBFT_PATH)/libft.a -o $(NAME)
+		$(CC) $(FLAG) $(SRC_BONUS)  $(LIBFT_PATH)/libft.a -o $(NAME)
 
 re: fclean all

@@ -12,35 +12,33 @@
 
 #include "pipex.h"
 
-
-
-
-void child_command(char *argv,int *pipe_fd, int fd_in, char **envp)
+void child_command(char *argv, int *pipe_fd, int fd_in, char **envp)
 {
     char **cmd;
     char  *path;
 
-    cmd = ft_split(argv,' ');
-    path = fetch_pathname(cmd[0],envp);
+    cmd = ft_split(argv, ' ');
+    path = fetch_pathname(cmd[0], envp);
     close(pipe_fd[0]); //???
-    dup2(fd_in,STDIN_FILENO);
-    dup2(pipe_fd[1],STDOUT_FILENO);
+    dup2(fd_in, STDIN_FILENO);
+    dup2(pipe_fd[1], STDOUT_FILENO);
     if ((execve(path, cmd, envp) == -1))
     {
         free(path);
         ft_exit_errno(0);
     }
 }
-void parent_command(char **argv,int *pipe_fd, int fd_out, char **envp)
+
+void    parent_command(char **argv, int *pipe_fd, int fd_out, char **envp)
 {
     char **cmd;
     char *path;
 
-    cmd = ft_split(argv[3],' ');
-    path  = fetch_pathname(cmd[0],envp);
+    cmd = ft_split(argv[3], ' ');
+    path  = fetch_pathname(cmd[0], envp);
     close(pipe_fd[1]); //???
-    dup2(pipe_fd[0],STDIN_FILENO);
-    dup2(fd_out,STDOUT_FILENO);
+    dup2(pipe_fd[0], STDIN_FILENO);
+    dup2(fd_out, STDOUT_FILENO);
     if ((execve(path, cmd, envp) == -1))
     {
         free(path);
@@ -56,7 +54,7 @@ t_fd    open_file(char **argv, char argc)
     fd.in = open(argv[1],O_RDONLY);
     if (fd.in == -1)
         ft_exit_errno(argv[1]);
-    fd.out = open(argv[argc - 1],O_WRONLY | O_CREAT | O_TRUNC | O_RDONLY, 0777 );
+    fd.out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC | O_RDONLY, 0777 );
     if (fd.out == -1)
         ft_exit_errno(argv[argc - 1]);
     return (fd);  
@@ -71,7 +69,7 @@ void check_arg(char **argv, int argc)
         ft_error_msg("You need 5 arguments");    
     if (argv[1][0] == '\0' || argv[argc - 1][0] == '\0')
         ft_error_msg("zsh: no such file or directory: ");
-    while (i< argc - 1)
+    while (i < argc - 1)
     {
         if (argv[i][0] == '\0')
             ft_error_msg("zsh: permission denied: ");
@@ -79,7 +77,7 @@ void check_arg(char **argv, int argc)
     }
 }
 
-int main(int argc, char **argv,char **envp)
+int main(int argc, char **argv, char **envp)
 {
     
     t_fd fd;
