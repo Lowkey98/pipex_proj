@@ -1,11 +1,25 @@
-# include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_strings.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/06 09:21:08 by ayafdel           #+#    #+#             */
+/*   Updated: 2021/10/06 09:40:54 by ayafdel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void print_strings(char **strings)
+#include <stdio.h>
+
+void	print_strings(char	**strings)
 {
-    int i = 0;
-    while (strings[i])
-    {
-        printf("%s\n",strings[i]);
-        i++;
-    }
+	int	i;
+
+	i = 0;
+	while (strings[i])
+	{
+		printf("%s\n", strings[i]);
+		i++;
+	}
 }

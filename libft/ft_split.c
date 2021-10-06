@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayafdel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 16:46:54 by ayafdel           #+#    #+#             */
-/*   Updated: 2019/10/24 22:47:05 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/06 10:04:15 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		numofstr(char const *s, char c)
+static int	numofstr(char const *s, char c)
 {
-	int cpt;
+	int	cpt;
 
 	cpt = 0;
 	while (*s)
@@ -26,9 +26,9 @@ static int		numofstr(char const *s, char c)
 	return (cpt);
 }
 
-static int		numofchar(char const *s, char c)
+static int	numofchar(char const *s, char c)
 {
-	int cpt;
+	int	cpt;
 
 	cpt = 0;
 	if (*(char *)s == c)
@@ -41,12 +41,13 @@ static int		numofchar(char const *s, char c)
 	return (cpt);
 }
 
-static char		*fillstr(char const *s, int j)
+static char	*fillstr(char const *s, int j)
 {
 	int			i;
 	char		*str;
 
-	if (!(str = (char *)malloc(sizeof(char) * (j + 1))))
+	str = (char *)malloc(sizeof(char) * (j + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (i != j)
@@ -59,7 +60,7 @@ static char		*fillstr(char const *s, int j)
 	return (str);
 }
 
-static char		**ft_free(char **tab, int j)
+static char	**ft_free(char **tab, int j)
 {
 	while (j)
 	{
@@ -70,7 +71,7 @@ static char		**ft_free(char **tab, int j)
 	return (0);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**tab;
 	int		i;
@@ -82,13 +83,16 @@ char			**ft_split(char const *s, char c)
 	if (!s)
 		return (0);
 	n = numofstr(s, c);
-	if (!(tab = (char **)malloc(sizeof(char *) * (n + 1))))
+	tab = (char **)malloc(sizeof(char *) * (n + 1));
+	if (!tab)
 		return (NULL);
 	while (n--)
 	{
-		while (!(j = numofchar(s, c)))
+		j = numofchar(s, c);
+		while (!j)
 			s++;
-		if (!(tab[i] = fillstr(s, j)))
+		tab[i] = fillstr(s, j);
+		if (!tab[i])
 			return (ft_free(tab, i));
 		s = s + j;
 		i++;

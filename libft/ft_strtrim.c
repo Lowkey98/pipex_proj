@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayafdel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 21:39:47 by ayafdel           #+#    #+#             */
-/*   Updated: 2019/10/29 13:19:04 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/06 09:48:34 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int			firstpos(char const *s1, char const *set)
+static int	firstpos(char const *s1, char const *set)
 {
-	int pos;
-	int i;
+	int	pos;
+	int	i;
 
 	i = 0;
 	pos = 0;
@@ -34,10 +34,10 @@ static int			firstpos(char const *s1, char const *set)
 	return (pos);
 }
 
-static int			lastpos(char const *s1, char const *set)
+static int	lastpos(char const *s1, char const *set)
 {
-	int pos;
-	int i;
+	int	pos;
+	int	i;
 
 	i = 0;
 	pos = ft_strlen(s1);
@@ -54,7 +54,7 @@ static int			lastpos(char const *s1, char const *set)
 	return (pos);
 }
 
-char				*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	unsigned int		i;
 	unsigned int		n;
@@ -66,7 +66,7 @@ char				*ft_strtrim(char const *s1, char const *set)
 		return (0);
 	j = firstpos(s1, set);
 	n = lastpos(s1, set);
-	str = (char*)malloc(n - j + 2);
+	str = (char *) malloc(n - j + 2);
 	if (str == NULL)
 		return (NULL);
 	while (j < n + 1)

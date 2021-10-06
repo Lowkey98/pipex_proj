@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayafdel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 12:34:52 by ayafdel           #+#    #+#             */
-/*   Updated: 2019/10/29 13:00:55 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/06 09:50:32 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	size_t i;
-	size_t a;
-	size_t j;
+	size_t	i;
+	size_t	a;
+	size_t	j;
 
 	j = 0;
 	if (n == 0)
