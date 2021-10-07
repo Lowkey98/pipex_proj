@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 16:46:54 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/07 11:43:28 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/07 11:54:06 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,11 @@ char	**ft_split(char const *s, char c)
 	int		j;
 	int		n;
 
-	j = 0;
 	i = 0;
 	if (!s)
 		return (0);
 	n = numofstr(s, c);
 	tab = (char **)malloc(sizeof(char *) * (n + 1));
-	if (!tab)
-		return (NULL);
 	while (n--)
 	{
 		while (!(numofchar(s, c)))
