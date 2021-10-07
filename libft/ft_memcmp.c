@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayafdel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:06:58 by ayafdel           #+#    #+#             */
-/*   Updated: 2019/11/03 18:46:33 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/06 13:03:44 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_memcmp(const void *str1, const void *str2, size_t n)
 		return (0);
 	while (--n)
 	{
-		if (*(char*)str1 != *(char *)str2)
+		if (*(char *)str1 != *(char *)str2)
 			break ;
 		str1++;
 		str2++;
