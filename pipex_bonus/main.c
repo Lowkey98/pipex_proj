@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:46:18 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/07 09:53:38 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/07 12:47:17 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	child_command(t_arg arg, t_fd fd, int cmd_index)
 	{
 		free(path);
 		ft_free_split(cmd);
-		ft_exit_errno(0);
+		//ft_exit_errno(0);
 	}
 }
 
@@ -95,8 +95,8 @@ int	main(int argc, char **argv, char **envp)
 	while (cmd_index + 1 < argc)
 	{
 		if (pipe(fd.pipe) == -1)
-			id = fork();
-		ft_exit_errno(0);
+			ft_exit_errno(0);
+		id = fork();
 		if (id == -1)
 			ft_exit_errno(0);
 		if (id == 0)

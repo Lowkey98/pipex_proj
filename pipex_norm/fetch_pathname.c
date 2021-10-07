@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:03:37 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/07 09:40:06 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/07 16:04:42 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ char	*fetch_pathname(char	*cmd,	char	**envp)
 	if (access(cmd, F_OK) == 0)
 		return (ft_strdup(cmd));
 	path = ft_split(fetch_env_path(envp), ':');
+	//print_strings(path);
 	path[0] = ft_free_first(path[0], ft_strdup(ft_strrchr(path[0], '=') + 1));
 	while (path[i])
 	{
 		pathname = ft_strjoin_char(path[i], cmd, '/');
+		//printf("aaa%s\n",pathname);
 		if (access(pathname, F_OK) == 0)
 			break ;
 		i++;
