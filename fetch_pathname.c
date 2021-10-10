@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:03:37 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/10 16:30:47 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/10 16:34:15 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*fetch_pathname(char	*cmd,	char	**envp)
 	path[0] = ft_free_first(path[0], ft_strdup(ft_strrchr(path[0], '=') + 1));
 	while (path[i])
 	{
-		printf("|%s|\n",cmd);
 		pathname = ft_strjoin_char(path[i], cmd, '/');
 		if (access(pathname, F_OK) == 0)
 			break ;

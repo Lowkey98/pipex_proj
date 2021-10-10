@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:31:34 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/10 15:42:28 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/10 16:39:19 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	first_command(char *argv, int *pipe_fd, char *file, char **envp)
 	int		fd;
 
 	cmd = ft_split(argv, ' ');
-	//print_strings(cmd);
 	path = fetch_pathname(cmd[0], envp);
-	//printf("hello\n");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_exit_errno(file);

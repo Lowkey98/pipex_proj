@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:21:08 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/06 09:40:54 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/10 16:39:05 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	print_strings(char	**strings)
 	i = 0;
 	while (strings[i])
 	{
-		printf("%s\n", strings[i]);
+		ft_putstr_fd(strings[i], 2);
+		ft_putstr_fd("\n", 2)
 		i++;
 	}
 }
