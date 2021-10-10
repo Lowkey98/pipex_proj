@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:50:50 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/06 09:51:43 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/10 16:23:36 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ char	*ft_strjoin_char(char const *s1, char const *s2, char c)
 	i = 0;
 	if (!s1)
 		return (0);
+	//{
+		//printf("hi\n");
+	//}
+	//printf("%")
 	str = malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 2);
 	if (str == NULL)
 		return (NULL);

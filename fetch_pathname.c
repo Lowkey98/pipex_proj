@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 10:13:37 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/10 08:10:13 by ayafdel          ###   ########.fr       */
+/*   Created: 2021/10/07 09:03:37 by ayafdel           #+#    #+#             */
+/*   Updated: 2021/10/10 16:30:47 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
-char	*fetch_env_path(char	**envp)
+char	*fetch_env_path(char **envp)
 {
 	int	i;
 
@@ -23,30 +23,38 @@ char	*fetch_env_path(char	**envp)
 			break ;
 		i++;
 	}
-	if (envp[i] == 0)
-		ft_error_two_msg("Error:", "Path not found");
 	return (envp[i]);
 }
 
-char	*fetch_pathname(char *cmd, char	**envp)
+void	error_command()
+{
+	ft_putstr_fd(" : command not found\n", 2);
+	exit(127);
+}
+char	*fetch_pathname(char	*cmd,	char	**envp)
 {
 	char	**path;
 	char	*pathname;
 	int		i;
 
 	i = 0;
+	if (!cmd)
+		error_command();
+	if (access(cmd, F_OK) == 0)
+		return (ft_strdup(cmd));
 	path = ft_split(fetch_env_path(envp), ':');
 	path[0] = ft_free_first(path[0], ft_strdup(ft_strrchr(path[0], '=') + 1));
 	while (path[i])
 	{
-		pathname = ft_free_first(path[i], ft_strjoin_char(path[i], cmd, '/'));
+		printf("|%s|\n",cmd);
+		pathname = ft_strjoin_char(path[i], cmd, '/');
 		if (access(pathname, F_OK) == 0)
 			break ;
 		i++;
-		if (!pathname)
-			free(pathname);
+		free(pathname);
+		if (path[i] == 0)
+			ft_error_two_msg(cmd, ": command not found");
 	}
-	if (path[i] == 0)
-		ft_error_two_msg("zsh: command not found:", cmd);
+	ft_free_split(path);
 	return (pathname);
 }
