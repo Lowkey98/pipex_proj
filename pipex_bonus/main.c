@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:46:18 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/07 12:47:17 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/10 08:09:08 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_exit_errno(char *str)
 		printf("Error: %s", strerror(errno));
 	else
 		printf("Error: %s: %s", strerror(errno), str);
-	//printf("a");
 	exit(EXIT_FAILURE);
 }
 
@@ -29,7 +28,7 @@ void	child_command(t_arg arg, t_fd fd, int cmd_index)
 
 	cmd = ft_split(arg.v[cmd_index], ' ');
 	path = fetch_pathname(cmd[0], arg.env);
-	close(fd.pipe[0]); //???
+	close(fd.pipe[0]);
 	dup2(fd.tmp, STDIN_FILENO);
 	close(fd.tmp);
 	if (cmd_index + 1 < arg.c - 1)
@@ -41,7 +40,7 @@ void	child_command(t_arg arg, t_fd fd, int cmd_index)
 	{
 		free(path);
 		ft_free_split(cmd);
-		//ft_exit_errno(0);
+		ft_exit_errno(EXIT_FAILURE);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 10:13:37 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/07 10:13:46 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/10 08:10:13 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ char	*fetch_pathname(char *cmd, char	**envp)
 		if (access(pathname, F_OK) == 0)
 			break ;
 		i++;
-	//if (!pathname)
-		free(pathname);
+		if (!pathname)
+			free(pathname);
 	}
 	if (path[i] == 0)
 		ft_error_two_msg("zsh: command not found:", cmd);

@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:19:41 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/07 12:30:52 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/10 08:07:37 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_exit_errno(char	*str)
 {
-	if (!str)
-		printf("Error: %s", strerror(errno));
+	if (str)
+		perror(str);
 	else
-		printf("Error: %s: %s", strerror(errno), str);
+		perror("");
 	exit(EXIT_FAILURE);
 }
