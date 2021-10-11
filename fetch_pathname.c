@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:03:37 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/11 12:38:44 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/11 13:04:23 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ char	*fetch_env_path(char **envp)
 	return (envp[i]);
 }
 
-void	error_command(void)
+void	error_command(char	*str)
 {
+	if (str)
+		ft_putstr_fd(str, 2);
 	ft_putstr_fd(" : command not found\n", 2);
 	exit(127);
 }
@@ -46,7 +48,7 @@ char	*fetch_pathname(char	*cmd,	char	**envp)
 
 	i = 0;
 	if (!cmd)
-		error_command();
+		error_command(NULL);
 	if (access(cmd, F_OK) == 0 && cmd[0] == '/')
 		return (ft_strdup(cmd));
 	path = ft_split(fetch_env_path(envp), ':');
@@ -59,7 +61,7 @@ char	*fetch_pathname(char	*cmd,	char	**envp)
 		i++;
 		free(pathname);
 		if (path[i] == 0)
-			error_command();
+			error_command(cmd);
 	}
 	ft_free_split(path);
 	return (pathname);

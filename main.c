@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:31:34 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/11 12:37:26 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/11 13:21:39 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ void	first_command(char *argv, int *pipe_fd, char *file, char **envp)
 	close(fd);
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	close(pipe_fd[1]);
-	if ((execve(path, cmd, envp) == -1))
-	{
-		free(path);
-		ft_free_split(cmd);
-		ft_exit_errno(0);
-	}
+	execve(path, cmd, envp);
+	perror(path);
+	free(path);
+	ft_free_split(cmd);
+	exit(127);
 }
 
 void	second_command(char **argv, int *pipe_fd, char *file, char **envp)
@@ -58,12 +57,11 @@ void	second_command(char **argv, int *pipe_fd, char *file, char **envp)
 	close(pipe_fd[0]);
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	if ((execve(path, cmd, envp) == -1))
-	{
-		free(path);
-		ft_free_split(cmd);
-		ft_exit_errno(0);
-	}
+	execve(path, cmd, envp);
+	perror(path);
+	free(path);
+	ft_free_split(cmd);
+	exit(127);
 }
 
 int	main(int argc, char **argv, char **envp)
