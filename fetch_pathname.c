@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:03:37 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/10 16:34:15 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/11 12:38:44 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@ char	*fetch_env_path(char **envp)
 	return (envp[i]);
 }
 
-void	error_command()
+void	error_command(void)
 {
 	ft_putstr_fd(" : command not found\n", 2);
 	exit(127);
 }
+
+void	ft_perror(char *cmd)
+{
+	perror(cmd);
+	exit(127);
+}
+
 char	*fetch_pathname(char	*cmd,	char	**envp)
 {
 	char	**path;
@@ -40,7 +47,7 @@ char	*fetch_pathname(char	*cmd,	char	**envp)
 	i = 0;
 	if (!cmd)
 		error_command();
-	if (access(cmd, F_OK) == 0)
+	if (access(cmd, F_OK) == 0 && cmd[0] == '/')
 		return (ft_strdup(cmd));
 	path = ft_split(fetch_env_path(envp), ':');
 	path[0] = ft_free_first(path[0], ft_strdup(ft_strrchr(path[0], '=') + 1));
@@ -52,7 +59,7 @@ char	*fetch_pathname(char	*cmd,	char	**envp)
 		i++;
 		free(pathname);
 		if (path[i] == 0)
-			ft_error_two_msg(cmd, ": command not found");
+			error_command();
 	}
 	ft_free_split(path);
 	return (pathname);

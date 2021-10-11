@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 16:46:54 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/07 13:13:20 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/11 09:54:41 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ char	**ft_split(char const *s, char c)
 		while (!(numofchar(s, c)))
 			s++;
 		j = numofchar(s, c);
-		if (!fillstr(s, j))
-			return (ft_free(tab, i));
 		tab[i] = fillstr(s, j);
+		if (!tab[i])
+			return (ft_free(tab, i));
 		s = s + j;
 		i++;
 	}
