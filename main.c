@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:31:34 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/11 13:21:39 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/11 14:24:51 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	first_command(char *argv, int *pipe_fd, char *file, char **envp)
 	if (fd == -1)
 		ft_exit_errno(file);
 	cmd = ft_split(argv, ' ');
-	if(argv[0] != '/')
+	if (argv[0] != '/')
 		path = fetch_pathname(cmd[0], envp);
 	else
 		path = ft_strdup(argv);
@@ -48,7 +48,7 @@ void	second_command(char **argv, int *pipe_fd, char *file, char **envp)
 	if (fd == -1)
 		ft_exit_errno(file);
 	cmd = ft_split(argv[3], ' ');
-	if(argv[3][0] != '/')
+	if (argv[3][0] != '/')
 		path = fetch_pathname(cmd[0], envp);
 	else
 		path = ft_strdup(argv[3]);

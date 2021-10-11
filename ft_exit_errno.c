@@ -6,7 +6,7 @@
 /*   By: ayafdel <ayafdel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 09:19:41 by ayafdel           #+#    #+#             */
-/*   Updated: 2021/10/11 13:13:15 by ayafdel          ###   ########.fr       */
+/*   Updated: 2021/10/11 14:28:14 by ayafdel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_exit_errno(char	*str)
 		perror(str);
 	else
 		perror("");
-	exit(66);
+	exit(EXIT_FAILURE);
 }
